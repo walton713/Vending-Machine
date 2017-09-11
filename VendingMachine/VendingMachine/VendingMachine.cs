@@ -13,6 +13,10 @@ namespace Machine
 
         public ArrayList CurrentCoins {get; private set;}
         public ArrayList CoinReturn { get; private set; }
+        public ArrayList StoredCoins { get; private set; }
+        public Product Cola { get; private set; }
+        public Product Chips { get; private set; }
+        public Product Candy { get; private set; }
         public double CurrentAmount { get; private set; }
         public string Display { get; private set; }
 
@@ -20,6 +24,10 @@ namespace Machine
         {
             CurrentCoins = new ArrayList();
             CoinReturn = new ArrayList();
+            StoredCoins = new ArrayList();
+            Cola = new Product("cola", 1.00);
+            Chips = new Product("chips", 0.50);
+            Candy = new Product("candy", 0.65);
             CurrentAmount = 0;
             Display = "INSERT COIN";
         }
@@ -54,11 +62,42 @@ namespace Machine
 
         public string CheckDisplay()
         {
-            return Display;
+            string message = Display;
+            if (message == "THANK YOU")
+            {
+                Display = "INSERT COIN";
+            }
+            return message;
+        }
+
+        public string SelectProduct(string product)
+        {
+            if (CurrentAmount >= 1.00)
+            {
+                CurrentAmount = 0.00;
+                Display = "THANK YOU";
+                return "cola";
+            }
+            else
+            {
+                return null;
+            }
         }
 
         static void Main(string[] args)
         {
+        }
+    }
+
+    public class Product
+    {
+        public string Name { get; private set; }
+        public double Cost { get; private set; }
+
+        public Product(string name, double cost)
+        {
+            Name = name;
+            Cost = cost;
         }
     }
 }
