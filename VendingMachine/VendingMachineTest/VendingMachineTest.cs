@@ -91,5 +91,14 @@ namespace VendingMachineTest
             Assert.AreEqual("THANK YOU", vendingMachine.CheckDisplay());
             Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
         }
+
+        [TestMethod]
+        public void WhenChipsIsSelectedAndThereIsNoMoneyPriceIsDisplayedThenInsertCoin()
+        {
+            Assert.AreEqual(null, vendingMachine.SelectProduct("chips"));
+            Assert.AreEqual(0.00, vendingMachine.CurrentAmount);
+            Assert.AreEqual($"PRICE {vendingMachine.Chips.Cost:0.00}", vendingMachine.CheckDisplay());
+            Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
+        }
     }
 }
