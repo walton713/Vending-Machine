@@ -49,5 +49,11 @@ namespace VendingMachineTest
             vendingMachine.InsertCoin(VendingMachine.Coins.PENNY);
             Assert.AreEqual(VendingMachine.Coins.PENNY, vendingMachine.CoinReturn[0]);
         }
+
+        [TestMethod]
+        public void WhenNoCoinIsInsertedDisplayIsInsertCoin()
+        {
+            Assert.AreEqual("INSERT COIN", vendingMachine.Display);
+        }
     }
 }
