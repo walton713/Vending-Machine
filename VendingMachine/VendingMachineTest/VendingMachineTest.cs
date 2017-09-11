@@ -58,7 +58,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void WhenAProductIsSelectedAndThereIsEnoughMoneyItIsDispensed()
+        public void WhenAColaIsSelectedAndThereIsEnoughMoneyItIsDispensed()
         {
             for (int i = 0; i < 4; i++)
             {
@@ -71,11 +71,24 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void WhenAProductIsSelectedAndThereIsNotEnoughMoneyPriceIsDisplayedThenInsertCoin()
+        public void WhenAColaIsSelectedAndThereIsNoMoneyPriceIsDisplayedThenInsertCoin()
         {
             Assert.AreEqual(null, vendingMachine.SelectProduct("cola"));
             Assert.AreEqual(0.00, vendingMachine.CurrentAmount);
             Assert.AreEqual($"PRICE {vendingMachine.Cola.Cost:0.00}", vendingMachine.CheckDisplay());
+            Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
+        }
+
+        [TestMethod]
+        public void WhenChipsIsSelectedAndThereIsEnoughMoneyItIsDispensed()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                vendingMachine.InsertCoin(VendingMachine.Coins.QUARTER);
+            }
+            Assert.AreEqual("chips", vendingMachine.SelectProduct("chips"));
+            Assert.AreEqual(0.00, vendingMachine.CurrentAmount);
+            Assert.AreEqual("THANK YOU", vendingMachine.CheckDisplay());
             Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
         }
     }
