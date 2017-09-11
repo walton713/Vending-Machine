@@ -48,8 +48,13 @@ namespace Machine
                         CurrentAmount += 0.25;
                         break;
                 }
-                Display = string.Format("{0:0.00}", CurrentAmount);
+                Display = $"{CurrentAmount:0.00}";
             }
+        }
+
+        public string CheckDisplay()
+        {
+            return Display;
         }
 
         static void Main(string[] args)
