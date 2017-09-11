@@ -83,51 +83,49 @@ namespace Machine
 
         public string SelectProduct(string product)
         {
-            if (product == "cola")
+            switch (product)
             {
-                if (CurrentAmount >= 1.00)
-                {
-                    CurrentAmount = 0.00;
-                    Display = "THANK YOU";
-                    return "cola";
-                }
-                else
-                {
-                    Display = $"PRICE {Cola.Cost:0.00}";
+                case "cola":
+                    if (CurrentAmount >= Cola.Cost)
+                    {
+                        CurrentAmount = 0.00;
+                        Display = "THANK YOU";
+                        return "cola";
+                    }
+                    else
+                    {
+                        Display = $"PRICE {Cola.Cost:0.00}";
+                        return null;
+                    }
+
+                case "chips":
+                    if (CurrentAmount >=Chips.Cost)
+                    {
+                        CurrentAmount = 0.00;
+                        Display = "THANK YOU";
+                        return "chips";
+                    }
+                    else
+                    {
+                        Display = $"PRICE {Chips.Cost:0.00}";
+                        return null;
+                    }
+
+                case "candy":
+                    if (CurrentAmount >= Candy.Cost)
+                    {
+                        CurrentAmount = 0.00;
+                        Display = "THANK YOU";
+                        return "candy";
+                    }
+                    else
+                    {
+                        Display = $"PRICE {Candy.Cost:0.00}";
+                        return null;
+                    }
+
+                default:
                     return null;
-                }
-            }
-            else if (product == "chips")
-            {
-                if (CurrentAmount >= 0.50)
-                {
-                    CurrentAmount = 0.00;
-                    Display = "THANK YOU";
-                    return "chips";
-                }
-                else
-                {
-                    Display = $"PRICE {Chips.Cost:0.00}";
-                    return null;
-                }
-            }
-            else if (product == "candy")
-            {
-                if (CurrentAmount >= 0.65)
-                {
-                    CurrentAmount = 0.00;
-                    Display = "THANK YOU";
-                    return "candy";
-                }
-                else
-                {
-                    Display = $"PRICE {Candy.Cost:0.00}";
-                    return null;
-                }
-            }
-            else
-            {
-                return null;
             }
         }
 
