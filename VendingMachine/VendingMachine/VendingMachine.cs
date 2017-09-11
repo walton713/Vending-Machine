@@ -67,16 +67,63 @@ namespace Machine
             {
                 Display = "INSERT COIN";
             }
+            else if (message.StartsWith("PRICE"))
+            {
+                if (CurrentAmount == 0.00)
+                {
+                    Display = "INSERT COIN";
+                }
+                else
+                {
+                    Display = $"{CurrentAmount:0.00}";
+                }
+            }
             return message;
         }
 
         public string SelectProduct(string product)
         {
-            if (CurrentAmount >= 1.00)
+            if (product == "cola")
             {
-                CurrentAmount = 0.00;
-                Display = "THANK YOU";
-                return "cola";
+                if (CurrentAmount >= 1.00)
+                {
+                    CurrentAmount = 0.00;
+                    Display = "THANK YOU";
+                    return "cola";
+                }
+                else
+                {
+                    Display = $"PRICE {Cola.Cost:0.00}";
+                    return null;
+                }
+            }
+            else if (product == "chips")
+            {
+                if (CurrentAmount >= 0.50)
+                {
+                    CurrentAmount = 0.00;
+                    Display = "THANK YOU";
+                    return "chips";
+                }
+                else
+                {
+                    Display = $"PRICE {Chips.Cost:0.00}";
+                    return null;
+                }
+            }
+            else if (product == "candy")
+            {
+                if (CurrentAmount >= 0.65)
+                {
+                    CurrentAmount = 0.00;
+                    Display = "THANK YOU";
+                    return "candy";
+                }
+                else
+                {
+                    Display = $"PRICE {Candy.Cost:0.00}";
+                    return null;
+                }
             }
             else
             {
