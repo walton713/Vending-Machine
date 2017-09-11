@@ -9,7 +9,7 @@ namespace Machine
 {
     public class VendingMachine
     {
-        public enum Coins { NICKEL, DIME };
+        public enum Coins { NICKEL, DIME, QUARTER };
 
         public ArrayList CurrentCoins {get; private set;}
 

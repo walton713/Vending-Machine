@@ -23,5 +23,13 @@ namespace VendingMachineTest
             vendingMachine.Insert(VendingMachine.Coins.DIME);
             Assert.AreEqual(VendingMachine.Coins.DIME, vendingMachine.CurrentCoins[0]);
         }
+
+        [TestMethod]
+        public void WhenAQuarterIsInsertedItIsAccepted()
+        {
+            VendingMachine vendingMachine = new VendingMachine();
+            vendingMachine.Insert(VendingMachine.Coins.QUARTER);
+            Assert.AreEqual(VendingMachine.Coins.QUARTER, vendingMachine.CurrentCoins[0]);
+        }
     }
 }
