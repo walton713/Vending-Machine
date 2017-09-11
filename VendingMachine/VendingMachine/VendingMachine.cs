@@ -24,7 +24,7 @@ namespace Machine
             Display = "INSERT COIN";
         }
 
-        public void Insert(Coins coin)
+        public void InsertCoin(Coins coin)
         {
             if (coin == Coins.PENNY)
             {
@@ -33,18 +33,20 @@ namespace Machine
             }
             else
             {
-                CurrentCoins.Add(coin);
-                if (coin == Coins.NICKEL)
+                CurrentCoins.Add(coin); 
+                switch (coin)
                 {
-                    CurrentAmount += 0.05;
-                }
-                else if (coin == Coins.DIME)
-                {
-                    CurrentAmount += 0.10;
-                }
-                else if (coin == Coins.QUARTER)
-                {
-                    CurrentAmount += 0.25;
+                    case Coins.NICKEL:
+                        CurrentAmount += 0.05;
+                        break;
+
+                    case Coins.DIME:
+                        CurrentAmount += 0.10;
+                        break;
+
+                    case Coins.QUARTER:
+                        CurrentAmount += 0.25;
+                        break;
                 }
                 Display = string.Format("{0:0.00}", CurrentAmount);
             }

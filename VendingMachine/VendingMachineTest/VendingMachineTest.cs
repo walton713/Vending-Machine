@@ -19,7 +19,7 @@ namespace VendingMachineTest
         [TestMethod]
         public void WhenANickelIsInsertedItIsAccepted()
         {
-            vendingMachine.Insert(VendingMachine.Coins.NICKEL);
+            vendingMachine.InsertCoin(VendingMachine.Coins.NICKEL);
             Assert.AreEqual(VendingMachine.Coins.NICKEL, vendingMachine.CurrentCoins[0]);
             Assert.AreEqual(0.05, vendingMachine.CurrentAmount);
             Assert.AreEqual("0.05", vendingMachine.Display);
@@ -28,7 +28,7 @@ namespace VendingMachineTest
         [TestMethod]
         public void WhenADimeIsInsertedItIsAccepted()
         {
-            vendingMachine.Insert(VendingMachine.Coins.DIME);
+            vendingMachine.InsertCoin(VendingMachine.Coins.DIME);
             Assert.AreEqual(VendingMachine.Coins.DIME, vendingMachine.CurrentCoins[0]);
             Assert.AreEqual(0.10, vendingMachine.CurrentAmount);
             Assert.AreEqual("0.10", vendingMachine.Display);
@@ -37,7 +37,7 @@ namespace VendingMachineTest
         [TestMethod]
         public void WhenAQuarterIsInsertedItIsAccepted()
         {
-            vendingMachine.Insert(VendingMachine.Coins.QUARTER);
+            vendingMachine.InsertCoin(VendingMachine.Coins.QUARTER);
             Assert.AreEqual(VendingMachine.Coins.QUARTER, vendingMachine.CurrentCoins[0]);
             Assert.AreEqual(0.25, vendingMachine.CurrentAmount);
             Assert.AreEqual("0.25", vendingMachine.Display);
@@ -46,7 +46,7 @@ namespace VendingMachineTest
         [TestMethod]
         public void WhenAPennyIsInsertedItIsRejected()
         {
-            vendingMachine.Insert(VendingMachine.Coins.PENNY);
+            vendingMachine.InsertCoin(VendingMachine.Coins.PENNY);
             Assert.AreEqual(VendingMachine.Coins.PENNY, vendingMachine.CoinReturn[0]);
         }
     }
