@@ -134,5 +134,15 @@ namespace VendingMachineTest
             Assert.AreEqual($"PRICE {vendingMachine.Cola.Cost:0.00}", vendingMachine.CheckDisplay());
             Assert.AreEqual($"{vendingMachine.CurrentAmount:0.00}", vendingMachine.CheckDisplay());
         }
+
+        [TestMethod]
+        public void WhenChipsIsSelectedAndThereIsNotEnoughMoneyPriceIsDisplayedThenCurrentAmount()
+        {
+            vendingMachine.InsertCoin(VendingMachine.Coins.DIME);
+            Assert.AreEqual(null, vendingMachine.SelectProduct("chips"));
+            Assert.AreEqual(0.10, vendingMachine.CurrentAmount);
+            Assert.AreEqual($"PRICE {vendingMachine.Chips.Cost:0.00}", vendingMachine.CheckDisplay());
+            Assert.AreEqual($"{vendingMachine.CurrentAmount:0.00}", vendingMachine.CheckDisplay());
+        }
     }
 }
