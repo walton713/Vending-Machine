@@ -86,24 +86,7 @@ namespace Machine
             if (CurrentAmount >= product.Cost)
             {
                 CurrentAmount = Math.Round(CurrentAmount - product.Cost, 2);
-                while (CurrentAmount > 0.00)
-                {
-                    if ((CurrentAmount - 0.25) >= 0)
-                    {
-                        CoinReturn.Add(Coins.QUARTER);
-                        CurrentAmount -= 0.25;
-                    }
-                    else if ((CurrentAmount - 0.10) >= 0)
-                    {
-                        CoinReturn.Add(Coins.DIME);
-                        CurrentAmount -= 0.10;
-                    }
-                    else if ((CurrentAmount - 0.05) >= 0)
-                    {
-                        CoinReturn.Add(Coins.NICKEL);
-                        CurrentAmount -= 0.05;
-                    }
-                }
+                GetChange(product);
                 while (CurrentCoins.Count > 0)
                 {
                     CurrentCoins.RemoveAt(0);
@@ -120,7 +103,24 @@ namespace Machine
 
         public void GetChange(Product product)
         {
-
+            while (CurrentAmount > 0.00)
+            {
+                if ((CurrentAmount - 0.25) >= 0)
+                {
+                    CoinReturn.Add(Coins.QUARTER);
+                    CurrentAmount -= 0.25;
+                }
+                else if ((CurrentAmount - 0.10) >= 0)
+                {
+                    CoinReturn.Add(Coins.DIME);
+                    CurrentAmount -= 0.10;
+                }
+                else if ((CurrentAmount - 0.05) >= 0)
+                {
+                    CoinReturn.Add(Coins.NICKEL);
+                    CurrentAmount -= 0.05;
+                }
+            }
         }
 
         static void Main(string[] args)
