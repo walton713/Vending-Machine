@@ -81,9 +81,9 @@ namespace Machine
             return message;
         }
 
-        public string SelectProduct(string product)
+        public string SelectProduct(Product product)
         {
-            switch (product)
+            switch (product.Name)
             {
                 case "cola":
                     if (CurrentAmount >= Cola.Cost)
@@ -149,6 +149,11 @@ namespace Machine
                 default:
                     return null;
             }
+        }
+
+        public void GetChange(Product product)
+        {
+
         }
 
         static void Main(string[] args)
