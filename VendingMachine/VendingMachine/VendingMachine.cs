@@ -83,71 +83,38 @@ namespace Machine
 
         public string SelectProduct(Product product)
         {
-            switch (product.Name)
+            if (CurrentAmount >= product.Cost)
             {
-                case "cola":
-                    if (CurrentAmount >= Cola.Cost)
+                CurrentAmount = Math.Round(CurrentAmount - product.Cost, 2);
+                while (CurrentAmount > 0.00)
+                {
+                    if ((CurrentAmount - 0.25) >= 0)
                     {
-                        CurrentAmount = 0.00;
-                        Display = "THANK YOU";
-                        return "cola";
+                        CoinReturn.Add(Coins.QUARTER);
+                        CurrentAmount -= 0.25;
                     }
-                    else
+                    else if ((CurrentAmount - 0.10) >= 0)
                     {
-                        Display = $"PRICE {Cola.Cost:0.00}";
-                        return null;
+                        CoinReturn.Add(Coins.DIME);
+                        CurrentAmount -= 0.10;
                     }
-
-                case "chips":
-                    if (CurrentAmount >= Chips.Cost)
+                    else if ((CurrentAmount - 0.05) >= 0)
                     {
-                        CurrentAmount = 0.00;
-                        Display = "THANK YOU";
-                        return "chips";
+                        CoinReturn.Add(Coins.NICKEL);
+                        CurrentAmount -= 0.05;
                     }
-                    else
-                    {
-                        Display = $"PRICE {Chips.Cost:0.00}";
-                        return null;
-                    }
-
-                case "candy":
-                    if (CurrentAmount >= Candy.Cost)
-                    {
-                        CurrentAmount = Math.Round(CurrentAmount - Candy.Cost, 2);
-                        while (CurrentAmount > 0.00)
-                        {
-                            if ((CurrentAmount - 0.25) >= 0)
-                            {
-                                CoinReturn.Add(Coins.QUARTER);
-                                CurrentAmount -= 0.25;
-                            }
-                            else if ((CurrentAmount - 0.10) >= 0)
-                            {
-                                CoinReturn.Add(Coins.DIME);
-                                CurrentAmount -= 0.10;
-                            }
-                            else if ((CurrentAmount - 0.05) >= 0)
-                            {
-                                CoinReturn.Add(Coins.NICKEL);
-                                CurrentAmount -= 0.05;
-                            }
-                        }
-                        while (CurrentCoins.Count > 0)
-                        {
-                            CurrentCoins.RemoveAt(0);
-                        }
-                        Display = "THANK YOU";
-                        return "candy";
-                    }
-                    else
-                    {
-                        Display = $"PRICE {Candy.Cost:0.00}";
-                        return null;
-                    }
-
-                default:
-                    return null;
+                }
+                while (CurrentCoins.Count > 0)
+                {
+                    CurrentCoins.RemoveAt(0);
+                }
+                Display = "THANK YOU";
+                return product.Name;
+            }
+            else
+            {
+                Display = $"PRICE {product.Cost:0.00}";
+                return null;
             }
         }
 
