@@ -1,6 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Machine;
+using System.Collections;
 
 namespace VendingMachineTest
 {
@@ -167,6 +168,28 @@ namespace VendingMachineTest
                 Assert.AreEqual(0, vendingMachine.CurrentCoins.Count);
                 Assert.AreEqual("THANK YOU", vendingMachine.CheckDisplay());
                 Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
+        }
+
+        [TestMethod]
+        public void WhenTheReturnCoinsButtonIsPressedInsertedCoinsArePutInTheCoinReturn()
+        {
+            ArrayList coins = new ArrayList();
+            coins.Add(VendingMachine.Coins.NICKEL);
+            coins.Add(VendingMachine.Coins.DIME);
+            coins.Add(VendingMachine.Coins.QUARTER);
+            for (int i = 0; i < coins.Count; i++)
+            {
+                vendingMachine.InsertCoin((VendingMachine.Coins)coins[i]);
+            }
+            for (int i = 0; i < coins.Count; i++)
+            {
+                Assert.AreEqual(coins[i], vendingMachine.CurrentCoins[i]);
+            }
+            vendingMachine.ReturnCoins();
+            for (int i = 0; i < coins.Count; i++)
+            {
+                Assert.AreEqual(coins[i], vendingMachine.CoinReturn[i]);
+            }
         }
     }
 }

@@ -119,6 +119,15 @@ namespace Machine
             }
         }
 
+        public void ReturnCoins()
+        {
+            while (CurrentCoins.Count > 0)
+            {
+                CoinReturn.Add(CurrentCoins[0]);
+                CurrentCoins.RemoveAt(0);
+            }
+        }
+
         static void Main(string[] args)
         {
         }
