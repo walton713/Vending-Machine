@@ -99,7 +99,7 @@ namespace Machine
                     }
 
                 case "chips":
-                    if (CurrentAmount >=Chips.Cost)
+                    if (CurrentAmount >= Chips.Cost)
                     {
                         CurrentAmount = 0.00;
                         Display = "THANK YOU";
@@ -114,7 +114,29 @@ namespace Machine
                 case "candy":
                     if (CurrentAmount >= Candy.Cost)
                     {
-                        CurrentAmount = 0.00;
+                        CurrentAmount = Math.Round(CurrentAmount - Candy.Cost, 2);
+                        while (CurrentAmount > 0.00)
+                        {
+                            if ((CurrentAmount - 0.25) >= 0)
+                            {
+                                CoinReturn.Add(Coins.QUARTER);
+                                CurrentAmount -= 0.25;
+                            }
+                            else if ((CurrentAmount - 0.10) >= 0)
+                            {
+                                CoinReturn.Add(Coins.DIME);
+                                CurrentAmount -= 0.10;
+                            }
+                            else if ((CurrentAmount - 0.05) >= 0)
+                            {
+                                CoinReturn.Add(Coins.NICKEL);
+                                CurrentAmount -= 0.05;
+                            }
+                        }
+                        while (CurrentCoins.Count > 0)
+                        {
+                            CurrentCoins.RemoveAt(0);
+                        }
                         Display = "THANK YOU";
                         return "candy";
                     }
