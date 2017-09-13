@@ -191,5 +191,22 @@ namespace VendingMachineTest
                 Assert.AreEqual(coins[i], vendingMachine.CoinReturn[i]);
             }
         }
+
+        [TestMethod]
+        public void WhenAProductIsSoldOutDisplayReadsSoldOutThenAmountOrInsertCoin()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                vendingMachine.InsertCoin(VendingMachine.Coins.QUARTER);
+            }
+            vendingMachine.SelectProduct(vendingMachine.Chips);
+            for (int i = 0; i < 2; i++)
+            {
+                vendingMachine.InsertCoin(VendingMachine.Coins.QUARTER);
+            }
+            Assert.AreEqual(null, vendingMachine.SelectProduct(vendingMachine.Chips));
+            Assert.AreEqual("SOLD OUT", vendingMachine.CheckDisplay());
+            Assert.AreEqual($"{vendingMachine.CurrentAmount:0.00}", vendingMachine.CheckDisplay());
+        }
     }
 }

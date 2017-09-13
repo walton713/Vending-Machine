@@ -63,7 +63,7 @@ namespace Machine
             {
                 Display = "INSERT COIN";
             }
-            else if (message.StartsWith("PRICE"))
+            else if (message.StartsWith("PRICE") || message == "SOLD OUT")
             {
                 if (CurrentAmount == 0.00)
                 {
@@ -79,9 +79,15 @@ namespace Machine
 
         public string SelectProduct(Product product)
         {
-            if (CurrentAmount >= product.Cost)
+            if (product.Quantity < 1)
+            {
+                Display = "SOLD OUT";
+                return null;
+            }
+            else if (CurrentAmount >= product.Cost)
             {
                 CurrentAmount = Math.Round(CurrentAmount - product.Cost, 2);
+                product.Quantity--;
                 GetChange(product);
                 while (CurrentCoins.Count > 0)
                 {
@@ -137,11 +143,13 @@ namespace Machine
     {
         public string Name { get; private set; }
         public double Cost { get; private set; }
+        public int Quantity { get; set; }
 
         public Product(string name, double cost)
         {
             Name = name;
             Cost = cost;
+            Quantity = 1;
         }
     }
 }
