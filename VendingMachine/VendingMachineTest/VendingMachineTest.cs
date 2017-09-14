@@ -8,14 +8,21 @@ namespace VendingMachineTest
     [TestClass]
     public class VendingMachineTest
     {
+        //The VendingMachine object to be used for testing
         VendingMachine vendingMachine;
 
+        /// <summary>
+        /// Initializes the VendingMachine object before each test.
+        /// </summary>
         [TestInitialize]
         public void TestInit()
         {
             vendingMachine = new VendingMachine();
         }
-
+        /// <summary>
+        /// Testing the InsertCoin method with a Nickel.
+        /// Display will show the value of a nickel.
+        /// </summary>
         [TestMethod]
         public void WhenANickelIsInsertedItIsAccepted()
         {
@@ -25,6 +32,10 @@ namespace VendingMachineTest
             Assert.AreEqual("0.05", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the InsertCoin method with a Dime.
+        /// Display will show the value of a dime.
+        /// </summary>
         [TestMethod]
         public void WhenADimeIsInsertedItIsAccepted()
         {
@@ -34,6 +45,10 @@ namespace VendingMachineTest
             Assert.AreEqual("0.10", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the InsertCoin method with a Quarter.
+        /// Display will show the value of a quarter.
+        /// </summary>
         [TestMethod]
         public void WhenAQuarterIsInsertedItIsAccepted()
         {
@@ -43,6 +58,10 @@ namespace VendingMachineTest
             Assert.AreEqual("0.25", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the InsertCoin method with a Penny.
+        /// Display will show INSERT COIN.
+        /// </summary>
         [TestMethod]
         public void WhenAPennyIsInsertedItIsRejected()
         {
@@ -51,12 +70,22 @@ namespace VendingMachineTest
             Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the display when no coin has been inserted.
+        /// Display will show INSERT COIN.
+        /// </summary>
         [TestMethod]
         public void WhenNoCoinIsInsertedDisplayIsInsertCoin()
         {
             Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the SelectProduct method with Cola and enough money inserted.
+        /// "cola" is returned from the SelectProduct method.
+        /// CurrentAmount is now 0.00 and Display is THANK YOU.
+        /// When the Display is checked again it shows INSERT COIN.
+        /// </summary>
         [TestMethod]
         public void WhenAColaIsSelectedAndThereIsEnoughMoneyItIsDispensed()
         {
@@ -70,6 +99,11 @@ namespace VendingMachineTest
             Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the SelectProduct method with Cola and no money inserted.
+        /// CurrentAmount is 0.00 and Display is PRICE and the price of Cola.
+        /// When the display is checked again it shows INSERT COIN.
+        /// </summary>
         [TestMethod]
         public void WhenAColaIsSelectedAndThereIsNoMoneyPriceIsDisplayedThenInsertCoin()
         {
@@ -79,6 +113,12 @@ namespace VendingMachineTest
             Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the SelectProduct method with Chips and enough money inserted.
+        /// "chips" is returned from the SelectProduct method.
+        /// CurrentAmount is now 0.00 and Display is THANK YOU.
+        /// When the Display is checked again it shows INSERT COIN.
+        /// </summary>
         [TestMethod]
         public void WhenChipsIsSelectedAndThereIsEnoughMoneyItIsDispensed()
         {
@@ -92,6 +132,11 @@ namespace VendingMachineTest
             Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the SelectProduct method with Chips and no money inserted.
+        /// CurrentAmount is 0.00 and Display is PRICE and the price of Chips.
+        /// When the display is checked again it shows INSERT COIN.
+        /// </summary>
         [TestMethod]
         public void WhenChipsIsSelectedAndThereIsNoMoneyPriceIsDisplayedThenInsertCoin()
         {
@@ -101,6 +146,12 @@ namespace VendingMachineTest
             Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the SelectProduct method with Candy and enough money inserted.
+        /// "candy" is returned from the SelectProduct method.
+        /// CurrentAmount is now 0.00 and Display is THANK YOU.
+        /// When the Display is checked again it shows INSERT COIN.
+        /// </summary>
         [TestMethod]
         public void WhenCandyIsSelectedAndThereIsEnoughMoneyItIsDispensed()
         {
@@ -116,6 +167,11 @@ namespace VendingMachineTest
             Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the SelectProduct method with Candy and no money inserted.
+        /// CurrentAmount is 0.00 and Display is PRICE and the price of Candy.
+        /// When the display is checked again it shows INSERT COIN.
+        /// </summary>
         [TestMethod]
         public void WhenCandyIsSelectedAndThereIsNoMoneyPriceIsDisplayedThenInsertCoin()
         {
@@ -125,6 +181,12 @@ namespace VendingMachineTest
             Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the SelectProduct method with Cola and not enough money is inserted.
+        /// CurrentAmount is the amount of money that has been inserted.
+        /// Display is PRICE and the price of Cola.
+        /// When the display is checked again it shows the CurrentAmount.
+        /// </summary>
         [TestMethod]
         public void WhenColaIsSelectedAndThereIsNotEnoughMoneyPriceIsDisplayedThenCurrentAmount()
         {
@@ -135,6 +197,12 @@ namespace VendingMachineTest
             Assert.AreEqual($"{vendingMachine.CurrentAmount:0.00}", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the SelectProduct method with Chips and not enough money is inserted.
+        /// CurrentAmount is the amount of money that has been inserted.
+        /// Display is PRICE and the price of Chips.
+        /// When the display is checked again it shows the CurrentAmount.
+        /// </summary>
         [TestMethod]
         public void WhenChipsIsSelectedAndThereIsNotEnoughMoneyPriceIsDisplayedThenCurrentAmount()
         {
@@ -145,6 +213,12 @@ namespace VendingMachineTest
             Assert.AreEqual($"{vendingMachine.CurrentAmount:0.00}", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the SelectProduct method with Candy and not enough money is inserted.
+        /// CurrentAmount is the amount of money that has been inserted.
+        /// Display is PRICE and the price of Candy.
+        /// When the display is checked again it shows the CurrentAmount.
+        /// </summary>
         [TestMethod]
         public void WhenCandyIsSelectedAndThereIsNotEnoughMoneyPriceIsDisplayedThenCurrentAmount()
         {
@@ -155,6 +229,11 @@ namespace VendingMachineTest
             Assert.AreEqual($"{vendingMachine.CurrentAmount:0.00}", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the GetChange method. When Candy is selected with 0.75 in the machine
+        /// a Dime is placed in the Coin Return. The display shows THANK YOU.
+        /// When the display is checked again, it shows INSERT COIN.
+        /// </summary>
         [TestMethod]
         public void WhenThereIsMoreMoneyThanTheProductCostTheRemainingMoneyIsPutInTheCoinReturn()
         {
@@ -170,6 +249,10 @@ namespace VendingMachineTest
                 Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the ReturnCoins method. When money has been inserted and the Return Coins
+        /// button is pressed, the inserted coins are placed in the Coin Return.
+        /// </summary>
         [TestMethod]
         public void WhenTheReturnCoinsButtonIsPressedInsertedCoinsArePutInTheCoinReturn()
         {
@@ -192,6 +275,11 @@ namespace VendingMachineTest
             }
         }
 
+        /// <summary>
+        /// Testing the SelectProduct method when the product is sold out and enough money has
+        /// been inserted. The product is not dispensed and the Display shows SOLD OUT.
+        /// When the display is checked again it shows the CurrentAmount.
+        /// </summary>
         [TestMethod]
         public void WhenAProductIsSoldOutDisplayReadsSoldOutThenAmount()
         {
@@ -209,6 +297,11 @@ namespace VendingMachineTest
             Assert.AreEqual($"{vendingMachine.CurrentAmount:0.00}", vendingMachine.CheckDisplay());
         }
 
+        /// <summary>
+        /// Testing the SelectProduct method when the product is sold out and no money
+        /// has been inserted. The product is not dispensed and the Display shows SOLD OUT.
+        /// When the Display is checked again it shows INSERT COIN.
+        /// </summary>
         [TestMethod]
         public void WhenAProductIsSoldOutDisplayReadsSoldOutThenInsertCoin()
         {
