@@ -193,7 +193,7 @@ namespace VendingMachineTest
         }
 
         [TestMethod]
-        public void WhenAProductIsSoldOutDisplayReadsSoldOutThenAmountOrInsertCoin()
+        public void WhenAProductIsSoldOutDisplayReadsSoldOutThenAmount()
         {
             for (int i = 0; i < 2; i++)
             {
@@ -207,6 +207,28 @@ namespace VendingMachineTest
             Assert.AreEqual(null, vendingMachine.SelectProduct(vendingMachine.Chips));
             Assert.AreEqual("SOLD OUT", vendingMachine.CheckDisplay());
             Assert.AreEqual($"{vendingMachine.CurrentAmount:0.00}", vendingMachine.CheckDisplay());
+        }
+
+        [TestMethod]
+        public void WhenAProductIsSoldOutDisplayReadsSoldOutThenInsertCoin()
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                vendingMachine.InsertCoin(VendingMachine.Coins.QUARTER);
+            }
+            vendingMachine.SelectProduct(vendingMachine.Chips);
+            Assert.AreEqual(null, vendingMachine.SelectProduct(vendingMachine.Chips));
+            Assert.AreEqual("SOLD OUT", vendingMachine.CheckDisplay());
+            Assert.AreEqual("INSERT COIN", vendingMachine.CheckDisplay());
+        }
+
+        [TestMethod]
+        public void WhenTheMachineCannotMakeChangeForAnyProductsExactChangeIsDisplayed()
+        {
+            //TODO: Exact Change Only
+            //As a customer
+            //I want to be told when exact change is required
+            //So that I can determine if I can buy something with the money I have before inserting it
         }
     }
 }
